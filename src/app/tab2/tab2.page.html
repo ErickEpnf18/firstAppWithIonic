@@ -1,37 +1,46 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Photo Gallery       
-
-
-      <ion-button (click)="saveUser()"> Save user 
-        <!-- <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon> -->
-        
-        
-      </ion-button>
-    </ion-title>
-    <!-- <ion-button color="secondary">
-    </ion-button> -->
-    <ion-grid>
-      <ion-row>
-        <ion-col
-          size="6"
-          *ngFor="let user of userAux, index as position"
-          >
-          <ion-label>{{user.name}}</ion-label>
-          <ion-button (click)="deleteUser(user.id)" color="light">
-
-
-          <ion-icon name="close-circle-outline"></ion-icon>
-          </ion-button> 
-
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <ion-title> Photo Gallery </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="saveUser()">
+          Add new User
+          <!-- <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon> -->
+        </ion-button>
+
+        <ion-item>
+          <ion-input
+            type="text"
+            placeholder="Enter your name"
+            [(ngModel)]="nameOfUser"
+            (keypress)="addNameUser($event)"
+          ></ion-input>
+        </ion-item>
+        <!-- <ion-button color="secondary">
+        </ion-button> -->
+        <br />
+        <ion-title>Users</ion-title>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6" *ngFor="let user of userAux, index as position">
+              <ion-item>
+                <ion-label>{{user.name}}</ion-label>
+                &nbsp;
+                <ion-button (click)="deleteUser(user.id)" color="light">
+                  <ion-icon name="close-circle-outline"></ion-icon>
+                </ion-button>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-grid>
     <ion-row>
       <ion-col

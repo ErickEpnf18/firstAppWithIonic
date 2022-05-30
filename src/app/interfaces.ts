@@ -6,3 +6,7 @@ export interface User {
   id?: string;
   level?: number;
 }
+export interface UserName{
+  name: string;
+  id?: string;
+}

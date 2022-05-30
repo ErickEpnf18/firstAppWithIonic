@@ -1,3 +1,4 @@
+import { UserName } from './../interfaces';
 import { Component } from '@angular/core';
 import { User } from '../interfaces';
 import { FirebaseService } from '../services/firebase.service';
@@ -11,7 +12,9 @@ export class Tab2Page {
   public photos: Photo[] = [];
   ages: number[];
   users: User[];
-  public userAux: User[] = [
+  nameOfUser: string;
+  public userAux: UserName[] = [];
+  public userAux2: User[] = [
     {
       name: 'erick',
       lastname: 'gonzalez',
@@ -27,13 +30,13 @@ export class Tab2Page {
   async ngOnInit() {
     await this.photoService.loadSaved();
     console.log('hello world from tab2');
-    const path = 'users/';
+    const path = 'usersName/';
     // this.firebaseService.getDoc<User>(path).subscribe((res: User) => {
     //   console.log('name of ', res.name);
     //   this.users[0] = res;
     //   this.userAux[0] = res;
     // });
-    this.firebaseService.getCollection<User>(path).subscribe((res) => {
+    this.firebaseService.getCollection<UserName>(path).subscribe((res) => {
       // console.log('name of ', res.name);
       // this.users[0] = res;
       this.userAux = res;
@@ -61,21 +64,32 @@ export class Tab2Page {
     ];
   }
 
+  addNameUser(e: any) {
+    console.log(e);
+    console.log('nameOfUser', this.nameOfUser);
+  }
   saveUser() {
     //it's posible to handle only refers "impar"
     // const path = 'users/asdfasd/product';
-    const path = 'users/';
+    const path = 'usersName/';
+    const idAux = this.firebaseService.createIdDoc();
     const newUser: User = {
       name: 'Erick',
       lastname: 'Gonzalez',
       proffesion: 'Developer',
       age: 5,
       level: 1,
-      id: this.firebaseService.createIdDoc(),
+      id: idAux,
     };
+    console.log('which is name?',this.nameOfUser);
+    const nameUser: UserName = {
+      name: this.nameOfUser,
+      id: idAux
+    };
+    this.nameOfUser = '';
 
     this.firebaseService
-      .createDoc<User>(newUser, path, newUser.id)
+      .createDoc<UserName>(nameUser, path, idAux)
       .then((res) => {
         console.log('res of firebase', res);
       })
@@ -84,7 +98,7 @@ export class Tab2Page {
       });
   }
   deleteUser(id: string) {
-    this.firebaseService.deleteDoc('users/', id).then((res) => {
+    this.firebaseService.deleteDoc('usersName/', id).then((res) => {
       console.log('res of delete', res);
     });
   }
