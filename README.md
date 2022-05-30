@@ -1,5 +1,5 @@
 # pictures-ionic
-### 🐎 Aplicacion con camara con Ionic y Firebase
+### 🐎 Aplicacion con camara atraves de  Ionic y Firebase
 #### Para descargar la apk dirijase a la carpeta  apk para descargarlo
 [Apk de la camara](/apk)
 ##### 1. Se realiza la aplicacion web y se previsualiza en el dispositivo movil.
