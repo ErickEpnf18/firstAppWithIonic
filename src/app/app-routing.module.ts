@@ -9,7 +9,11 @@ const routes: Routes = [
   {
     path: 'cloud-list',
     loadChildren: () => import('./cloud-list/cloud-list.module').then( m => m.CloudListPageModule)
+  },  {
+    path: 'gps',
+    loadChildren: () => import('./gps/gps.module').then( m => m.GpsPageModule)
   }
+
 ];
 @NgModule({
   imports: [

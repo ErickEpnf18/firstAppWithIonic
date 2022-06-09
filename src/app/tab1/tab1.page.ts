@@ -52,7 +52,7 @@ export class Tab1Page {
     this.isFileUploading = false;
     this.isFileUploaded = false;
     // Define uploaded files collection
-    this.filesCollection = afs.collection<ImgFile>('imagesCollection');
+    this.filesCollection = afs.collection<ImgFile>('lection');
     this.files = this.filesCollection.valueChanges();
   }
   uploadImage(event: FileList) {
